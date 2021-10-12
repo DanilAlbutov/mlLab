@@ -3,10 +3,10 @@ import numpy as np
 import pandas as pd
 from sklearn import datasets, linear_model
 from sklearn.metrics import mean_squared_error, r2_score
-
+import tensorflow as tf
 # Загрузите набор данных о диабете
 
-X = pd.read_csv('data.txt', sep="\t", header=None)
+
 diabetes_X, diabetes_y = datasets.load_diabetes(return_X_y=True)
 
 # Используйте только одну функцию
