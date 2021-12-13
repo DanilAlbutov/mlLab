@@ -6,10 +6,10 @@ import csv
 from sklearn.linear_model import Perceptron
 from sklearn.metrics import mean_squared_error, r2_score
 
-data = pd.read_csv('int4/letter-recognition.data')
+data = pd.read_csv('/Users/danilalbutov/Data/Учеба/7 семак/mlLab/mlLab4/letter-recognition.data')
 # Модель из документации изначально масштабирована от 0 до 15, поэтому не будем ее масштабировать
 
-x_columns = data[['x-box', 'y-box', 'width', 'high', 'onpix', 'x-bar', 'y-bar', 'x2bar', 'y2bar', 'xybar', 'x2ybr', 'xy2br', 'x-ege', 'xegvy', 'y-ege', 'yegvx']]
+x_columns = data[['x-box', 'y-box', 'width', 'high', 'onpix', 'x-bar', 'y-bar', 'x2bar', 'y2bar', 'xybar', 'x2ybr', 'xy2br', 'x-ege', 'xegvy', 'y-ege', 'yegvx']].head()
 y_columns = data[['lettr']]
 
 X_train = x_columns.iloc[:16000]
@@ -27,7 +27,7 @@ penalty=['l2']
 # l1, l2, elasticnet
 for pen in penalty:
     for alpha in alphas:
-        perc = Perceptron(penalty=f'{pen}', alpha=alpha)
+        perc = Perceptron(penalty='l2', alpha=alpha)
         perc.fit(X_train, y_train.values.ravel())
         perc.predict(X_test)
         score_list.append(perc.score(X_test, y_test))
@@ -39,6 +39,6 @@ plt.plot(alphas, score_list)
 plt.plot(alphas, score_list, 'bo')
 plt.xlabel("alpha")
 plt.ylabel("r2")
-plt.savefig('int4/perceptron_l2.png')
+plt.savefig('perceptron_l2.png')
 plt.show()
 

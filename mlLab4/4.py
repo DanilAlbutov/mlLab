@@ -6,7 +6,7 @@ import csv
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import mean_squared_error, r2_score
 
-data = pd.read_csv('int4/letter-recognition.data')
+data = pd.read_csv('/Users/danilalbutov/Data/Учеба/7 семак/mlLab/mlLab4/letter-recognition.data')
 # Модель из документации изначально масштабирована от 0 до 15, поэтому не будем ее масштабировать
 
 x_columns = data[['x-box', 'y-box', 'width', 'high', 'onpix', 'x-bar', 'y-bar', 'x2bar', 'y2bar', 'xybar', 'x2ybr', 'xy2br', 'x-ege', 'xegvy', 'y-ege', 'yegvx']]
@@ -17,6 +17,8 @@ y_train = y_columns.iloc[:16000]
 
 X_test = x_columns.iloc[4000:]
 y_test = y_columns.iloc[4000:]
+
+
 
 alphas = [0.00001, 0.0001, 0.001, 0.01]
 #np.arange(0, 1, 0.01)
@@ -39,6 +41,6 @@ plt.plot(alphas, score_list)
 plt.plot(alphas, score_list, 'bo')
 plt.xlabel("alpha")
 plt.ylabel("r2")
-plt.savefig('int4/mlp_adam.png')
+plt.savefig('mlp_adam.png')
 plt.show()
 
